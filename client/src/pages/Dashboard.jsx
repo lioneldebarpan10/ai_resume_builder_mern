@@ -79,7 +79,7 @@ const Dashboard = () => {
 
                         <div onClick = {e => e.stopPropagation() }className='absolute top-1 right-1 group-hover:flex items-center hidden'>
                            <TrashIcon onClick = {() => {deleteResume(resume._id)}}  className='size-7 p-1.5 hover:bg-white/50 rounded text-slate-700 transition-colors' />
-                           <PencilIcon onClick={() => {setEditResumeId(resume._id) , setTitle(resume.title)}} className='size-7 p-1.5 hover:bg-white/50 rounded text-slate-700 transition-colors' />
+                           <PencilIcon onClick={() => {setEditResumeId(resume._id), setTitle(resume.title)}} className='size-7 p-1.5 hover:bg-white/50 rounded text-slate-700 transition-colors' />
 
                         </div>
                      </button>
@@ -90,8 +90,8 @@ const Dashboard = () => {
 
             {/**now create modal window or pop up window */}
             {/**Pop up for Creating Resume*/}
-            {
-               showCreateResume && (
+
+            {showCreateResume && (
                   <form onSubmit={createResume} onClick={() => setShowCreateResume(false)} className='fixed inset-0 bg-black/70 backdrop-blur bg-opacity-50 z-10 flex items-center justify-center'>
                      <div onClick={e => e.stopPropagation()} className='relative bg-state-50 border shadow-md rounded-lg w-full max-w-sm p-6 bg-white'>
                         <h2 className='text-xl font-bold mb-4'>Create a Resume</h2>
@@ -106,8 +106,8 @@ const Dashboard = () => {
                )
             }
             {/**Pop up for uploading existing resume*/}
-            {
-               showUploadResume && (
+
+            {showUploadResume && (
                   <form onSubmit={uploadResume} onClick={() => setShowUploadResume(false)} className='fixed inset-0 bg-black/70 backdrop-blur bg-opacity-50 z-10 flex items-center justify-center'>
                      <div onClick={e => e.stopPropagation()} className='relative bg-state-50 border shadow-md rounded-lg w-full max-w-sm p-6 bg-white'>
                         <h2 className='text-xl font-bold mb-4'>Upload Resume</h2>
@@ -121,7 +121,7 @@ const Dashboard = () => {
                                  ): (
                                     <>
                                     <UploadCloud className='size-14 stroke-1'/>
-                                    <p>Uplaod Resume</p>
+                                    <p>Upload Resume</p>
                                     </>
                                  )}
                               </div>
@@ -146,7 +146,7 @@ const Dashboard = () => {
 
                         <button className='w-full py-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition-colors'>Update Title</button>
                         <XIcon className='absolute top-4 right-4 text-slate-400 hover:text-slate-600 cursor-pointer transition-colors' onClick={() => {
-                           setEditResumeId(false); setTitle('')
+                           setEditResumeId(''); setTitle('')
                         }} />
                      </div>
                   </form>

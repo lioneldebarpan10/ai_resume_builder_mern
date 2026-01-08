@@ -5,10 +5,11 @@ import React, { useEffect, useState } from 'react'
 import { ArrowLeftIcon, Briefcase, ChevronLeft, ChevronRight, FileText, FolderIcon, GraduationCap, Sparkles, User } from 'lucide-react'
 import { useParams, Link } from 'react-router-dom'
 import { dummyResumeData } from '../assets/assets'
+import PersonalInfoForm from '../components/PersonalInfoForm'
 
 const ResumeBuilder = () => {
 
-   const { resumeId } = useParams(); // Step - 3: 
+   const { resumeId } = useParams(); // Step - 3: get resumeId from URL parameter
    // step - 1: state for resume data => initial values of Properties of Resume Data
    const [resumeData, setResumeData] = useState({
       _id: '',
@@ -33,7 +34,7 @@ const ResumeBuilder = () => {
       }
    }
 
-   // step - 5: execute this function when component gets loaded using useEffect()
+   // step - 5: execute this function when component gets loaded using useEffect(), if the resumeId is available in the URL 
    useEffect(() => {
       loadExistingResume();
    }, [])
@@ -61,13 +62,14 @@ const ResumeBuilder = () => {
             </Link>
          </div>
 
-         {/***/}
+
          <div className='max-w-7xl mx-auto px-4 pb-8'>
             <div className='grid lg:grid-cols-12 gap-8'>
 
                {/*step - 11: Left Side - Form*/}
                <div className="relative lg:col-span-5 rounded-lg overflow-hidden">
                   <div className='bg-white rounded-lg shadow-sm border border-gray-200 p-6 pt-1'>
+
                      {/**Progress Bar using activeSectionIndex */}
                      <hr className='absolute top-0 left-0 right-0 border-2 border-gray-200' />
                      <hr className='absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 to-pink-200 border-none transition-all duration-2000' style={{ width: `${activeSectionIndex * 100 / (sections.length - 1)}%` }} />
@@ -90,10 +92,19 @@ const ResumeBuilder = () => {
                      </div>
 
                      {/**Step - 13 Form Content */}
+                     <div className='space-y-6'>
+                        {/*Step- 14 Check PersonalInfoForm component*/}
+                        {activeSection.id === 'personal' && (
+                           <PersonalInfoForm data = {resumeData.personal_info} onChange={() => setResumeData(prev => ({...prev , personal_info: data}))} removeBackground = {removeBackground} setremoveBackground={ {setremoveBackground}}/>
+                           
+                        )}
+
+                     </div>
                   </div>
                </div>
 
                {/*Right Side - Preview Resume*/}
+
                <div></div>
 
             </div>
